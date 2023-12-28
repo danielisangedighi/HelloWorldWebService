@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World Web Client</title>
+</head>
+<body>
+    <h1>Hello World Web Client</h1>
+    <button onclick="getHelloWorld()">Get Hello World</button>
+    <p id="output"></p>
+
+    <script>
+        function getHelloWorld() {
+            // Make an XMLHttpRequest to your web service
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Update the output element with the response
+                    document.getElementById("output").innerHTML = xhr.responseText;
+                }
+            };
+            
+            // Replace the URL with the actual URL of your web service
+            xhr.open("GET", "http://localhost:8090/HelloWorldWebService/HelloWorldImpl", true);
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
